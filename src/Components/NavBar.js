@@ -1,15 +1,22 @@
 import React from "react";
+import 'materialize-css/dist/css/materialize.min.css'
+
 
 const NavBar = () => {
     return (
-        <div id="navbar">
-            <div id="brand">Gea Running</div>
-            <ul>
-                <li><a href="http://github.com">Shoes</a></li>
-                <li><a href="http://github.com">Suplements</a></li>
-                <li><a href="http://github.com">Trail</a></li>
-            </ul>
-        </div>
+        <><nav class="nav-extended">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Running Gear</a>
+            </div>
+            <div class="nav-content">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab"><a href="#RunningGear">Running Gear</a></li>
+                    <li class="tab"><a class="active" href="#trailGear">Trail Gear</a></li>
+                    <li class="tab"><a href="#aboutUS">About Us</a></li>
+                </ul>
+            </div>
+        </nav>
+        </>
     )
 }
 
