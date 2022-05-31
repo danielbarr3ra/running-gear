@@ -4,7 +4,7 @@ import 'materialize-css/dist/css/materialize.min.css'
 
 const NavBar = () => {
     return (
-        <><nav class="nav-extended">
+        <><nav class="nav-extended orange accent-3">
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">Running Gear</a>
             </div>
