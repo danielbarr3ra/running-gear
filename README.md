@@ -1,3 +1,3 @@
 # Hey Rodrigo
 
-Adding materialize to make a simple nav. 
+Adding the brand component, cartWidget, and list component, they are passing and receiving props
