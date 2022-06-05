@@ -1,16 +1,17 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const ItemListContainer = ({ greeting, shoe, description }) => {
     return (
         <>
             <h1>{greeting}</h1>
-            <dl class="row">
-                <dt class="col-sm-3">A list of specs</dt>
-                <dt class="col-sm-9">A description of the spec</dt>
-                <dt class="col-sm-3">Stack</dt>
-                <dt class="col-sm-9">39mm (3 inches)</dt>
-                <dt class="col-sm-3">{shoe}</dt>
-                <dd class="col-sm-9">
+            <dl className="row">
+                <dt className="col-sm-3">A list of specs</dt>
+                <dt className="col-sm-9">A description of the spec</dt>
+                <dt className="col-sm-3">Stack</dt>
+                <dt className="col-sm-9">39mm (3 inches)</dt>
+                <dt className="col-sm-3">{shoe}</dt>
+                <dd className="col-sm-9">
                     <p>great running shoe</p>
                     <p>{description}</p>
                 </dd>
@@ -18,6 +19,12 @@ const ItemListContainer = ({ greeting, shoe, description }) => {
             </dl></>
 
     )
+}
+
+ItemListContainer.propTypes = {
+    greeting: PropTypes.string,
+    shoe: PropTypes.string,
+    description: PropTypes.string
 }
 
 export default ItemListContainer
