@@ -1,5 +1,9 @@
 import React from "react";
 import Brand from "./Brand"
+import CartWidget from "./CartWidget";
+import SearchBar from "./SearchBar";
+import AccountLogIn from "./AccountLogIn";
+
 const NavBar = () => {
     return (
         <>
@@ -23,13 +27,13 @@ const NavBar = () => {
                 </nav>
                 <div className="sessionNavigation flex justify-around w-3/12">
                     <div className="searchBar">
-                        searchBar
+                        <SearchBar />
                     </div>
                     <div className="accountLogIn">
-                        accountLogIn
+                        <AccountLogIn />
                     </div>
-                    <div className="Cart">
-                        Cart
+                    <div className="Cart flex">
+                        <CartWidget itemCount={2} />
                     </div>
                 </div>
             </nav>
