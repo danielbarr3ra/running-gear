@@ -1,30 +1,27 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import ItemCard from "./ItemCard";
 
-const ItemListContainer = ({ greeting, shoe, description }) => {
+const ItemListContainer = ({ greeting }) => {
+    const inventory = [{
+        model: "vaporX"
+        , description: "an awesome race ready shoe with a carbon plage"
+    }, { model: "speadBull", description: "A great trailshoe for all your needs" }, { model: "AscenCloud", description: "super confy" }]
+
     return (
         <>
-            <h1>{greeting}</h1>
-            <dl className="row">
-                <dt className="col-sm-3">A list of specs</dt>
-                <dt className="col-sm-9">A description of the spec</dt>
-                <dt className="col-sm-3">Stack</dt>
-                <dt className="col-sm-9">39mm (3 inches)</dt>
-                <dt className="col-sm-3">{shoe}</dt>
-                <dd className="col-sm-9">
-                    <p>great running shoe</p>
-                    <p>{description}</p>
-                </dd>
-
-            </dl></>
-
+            <h1 className="text-4xl mt-0 mb-2 text gray-900">{greeting}</h1>
+            <div className="flex justify-around">
+                {inventory.map((shoe) => {
+                    return (<ItemCard key={0} shoeDescription={shoe.description} shoeModel={shoe.model} />)
+                })}
+            </div>
+        </>
     )
 }
 
 ItemListContainer.propTypes = {
     greeting: PropTypes.string,
-    shoe: PropTypes.string,
-    description: PropTypes.string
 }
 
 export default ItemListContainer
