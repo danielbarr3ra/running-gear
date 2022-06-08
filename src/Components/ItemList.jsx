@@ -11,9 +11,10 @@ const ItemList = ({ catalog }) => {
             <div className="wrapper max-w-sm flex justify-between text-black 800 rounded-lg bg-gray-100 shadow-lg" >
                 {
                     catalog.map((item) => {
+                        const { id, title, model, price, stock, imageUrl } = item
                         return (
                             <>
-                                <Item key={item.id} title={item.title} model={item.model} price={item.price} stock={item.stock} imageUrl={item.imageUrl} />
+                                <Item key={id} title={title} model={model} price={price} stock={stock} imageUrl={imageUrl} />
                             </>
                         )
                     })
