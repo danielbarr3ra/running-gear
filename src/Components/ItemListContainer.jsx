@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import ItemList from "./ItemList";
 
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = ({ greeting, clickDetails }) => {
     const [loading, setLoading] = useState()
     const [error, setError] = useState()
     const [catalog, setCatalog] = useState([])
@@ -90,7 +91,7 @@ const ItemListContainer = ({ greeting }) => {
             <h1 className="text-4xl mt-0 mb-2 text gray-900">{greeting}</h1>
             <div> {loading && "loading catalog"} </div>
             <div> {error && "an error in loading catalog"} </div>
-            <ItemList catalog={catalog} />
+            <ItemList catalog={catalog} clickDetails={clickDetails} />
         </>
     )
 }

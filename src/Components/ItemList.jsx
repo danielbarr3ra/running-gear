@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
 import React from "react";
 import PropTypes from 'prop-types';
@@ -5,7 +6,7 @@ import Item from './Item'
 //import ItemCount from "./ItemCount";
 
 
-const ItemList = ({ catalog }) => {
+const ItemList = ({ catalog, clickDetails }) => {
     return (
         <>
             <div className="wrapper max-w-sm flex justify-between text-black 800 rounded-lg bg-gray-100 shadow-lg" >
@@ -14,7 +15,8 @@ const ItemList = ({ catalog }) => {
                         const { id, title, model, price, stock, imageUrl } = item
                         return (
                             <>
-                                <Item key={id} title={title} model={model} price={price} stock={stock} imageUrl={imageUrl} />
+                                <Item key={id} id={id} title={title} model={model} price={price} stock={stock} imageUrl={imageUrl}
+                                    clickDetails={clickDetails} />
                             </>
                         )
                     })

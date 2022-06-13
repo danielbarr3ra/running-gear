@@ -1,8 +1,12 @@
+/* eslint-disable no-unused-vars */
 //import React, { useState, useEffect } from "react";
 import React, { useEffect, useState } from "react"
 import ItemDetail from './ItemDetail'
+import PropTypes from 'prop-types'
 
-const ItemDetailContainer = () => {
+
+const ItemDetailContainer = ({ activeID }) => {
+    const filter = activeID
     const [item, setItem] = useState()
     const [loading, setLoading] = useState(true)
     //const [inventory, setInventory] = useState([]);
@@ -13,7 +17,7 @@ const ItemDetailContainer = () => {
                 .then(response => response.json())
                 .then((data) => {
                     var selectedShoe = data.find((shoe) => {
-                        return shoe.id === 136;
+                        return shoe.id === filter;
                     })
                     setItem(selectedShoe)
                     setLoading(false)
@@ -26,14 +30,11 @@ const ItemDetailContainer = () => {
         setTimeout(() => {
             getDetail()
         }, 5000)
-    }, [])
+    }, [activeID])
 
     if (!loading) {
         return (
             <>
-                <div>
-                    ItemDetailContainer
-                </div>
                 <div>
                     <ItemDetail activeItem={item} />
                 </div>
@@ -48,6 +49,9 @@ const ItemDetailContainer = () => {
             </>
         )
     }
+}
+ItemDetailContainer.propTypes = {
+    activeID: PropTypes.number
 }
 
 
