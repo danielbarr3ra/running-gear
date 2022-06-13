@@ -4,6 +4,7 @@ import ItemDetail from './ItemDetail'
 
 const ItemDetailContainer = () => {
     const [item, setItem] = useState()
+    const [loading, setLoading] = useState(true)
     //const [inventory, setInventory] = useState([]);
 
     useEffect(() => {
@@ -15,8 +16,7 @@ const ItemDetailContainer = () => {
                         return shoe.id === 136;
                     })
                     setItem(selectedShoe)
-                    console.log(selectedShoe)
-                    console.log(item)
+                    setLoading(false)
                 })
                 .catch(error => {
                     console.error("Error somethign happened in fetch", error)
@@ -25,19 +25,29 @@ const ItemDetailContainer = () => {
 
         setTimeout(() => {
             getDetail()
-        }, 2000)
+        }, 5000)
     }, [])
 
-    return (
-        <>
-            <div>
-                ItemDetailContainer
-            </div>
-            <div>
-                <ItemDetail activeItem={item} />
-            </div>
-        </>
-    )
+    if (!loading) {
+        return (
+            <>
+                <div>
+                    ItemDetailContainer
+                </div>
+                <div>
+                    <ItemDetail activeItem={item} />
+                </div>
+            </>
+        )
+    } else {
+        return (
+            <>
+                <div>
+                    Loading ICON
+                </div>
+            </>
+        )
+    }
 }
 
 
