@@ -29,7 +29,7 @@ const ItemDetailContainer = ({ activeID }) => {
 
         setTimeout(() => {
             getDetail()
-        }, 5000)
+        }, 500)
     }, [activeID])
 
     if (!loading) {
