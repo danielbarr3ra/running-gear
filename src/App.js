@@ -26,8 +26,6 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<ItemListContainer clickDetails={openDetails} />} />
-          <Route path="/category/:id" element={<ItemDetailContainer activeID={activeItem} />} />
-          <Route path="/item/:id" element={<ItemDetailContainer activeID={activeItem} />} />
         </Routes>
       </BrowserRouter>
       <ItemDetailContainer activeID={activeItem} />

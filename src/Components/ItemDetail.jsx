@@ -8,7 +8,6 @@ const ItemDetail = ({ activeItem }) => {
 
     const { stack, upper, type, id } = activeItem
     return (
-
         <div key={id} className="wrapper bg-gray-400 antialiased text-gray-900">
             <img src="/logo192.png" alt="" />
             <div>
