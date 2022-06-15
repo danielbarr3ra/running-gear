@@ -24,7 +24,7 @@ const ItemListContainer = ({ greeting, clickDetails }) => {
                         "type": "road",
                         "stack": "5cm",
                         "upper": "wieved",
-                        "stock": 100,
+                        "stock": 3,
                         "price": 100,
                         "imageUrl": "images/134.jpeg"
                     },
@@ -35,7 +35,7 @@ const ItemListContainer = ({ greeting, clickDetails }) => {
                         "type": "road",
                         "stack": "7cm",
                         "upper": "wieved",
-                        "stock": 65,
+                        "stock": 5,
                         "description": "an awesome race ready shoe with a carbon plage",
                         "price": 170,
                         "imageUrl": "images/135.jpeg"
@@ -47,7 +47,7 @@ const ItemListContainer = ({ greeting, clickDetails }) => {
                         "type": "Trail",
                         "stack": "8cm",
                         "upper": "wieved",
-                        "stock": 30,
+                        "stock": 2,
                         "description": "A great trailshoe for all your needs",
                         "price": 100,
                         "imageUrl": "images/136.jpeg"
@@ -59,7 +59,7 @@ const ItemListContainer = ({ greeting, clickDetails }) => {
                         "type": "road",
                         "stack": "10cm",
                         "upper": "wieved",
-                        "stock": 20,
+                        "stock": 1,
                         "description": "super confy",
                         "price": 80,
                         "imageUrl": "images/137.jpeg"

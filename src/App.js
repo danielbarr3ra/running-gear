@@ -4,12 +4,12 @@ import NavBar from './Components/NavBar'
 import ItemListContainer from './Components/ItemListContainer';
 import React, { useEffect, useState } from 'react';
 import ItemDetailContainer from './Components/ItemDetailContianer';
-// import { BrowserRouter, Routes, Route } from 'react-router-dom'
-// import Home from './Components/Home'
-//import Contacto from './Components/Contacto';
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
+import Home from './Components/Home'
 
 function App() {
   const [activeItem, setActiveItem] = useState(135)
+  let { detailsID } = useParams()
   const openDetails = (id) => {
     console.log("hello theere")
     setActiveItem(id)
@@ -22,22 +22,15 @@ function App() {
 
   return (
     <>
-
-      <NavBar />
-      <ItemListContainer clickDetails={openDetails} />
-      <ItemDetailContainer activeID={activeItem} />
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/inventory" element={<ItemListContainer />} />
-
+          <Route path="/" element={<ItemListContainer clickDetails={openDetails} />} />
+          <Route path="/category/:id" element={<ItemDetailContainer activeID={activeItem} />} />
+          <Route path="/item/:id" element={<ItemDetailContainer activeID={activeItem} />} />
         </Routes>
-      </BrowserRouter> */}
-      {/* <NavBar />
-      <ItemListContainer greeting={"Our daily Specials"}>
-      </ItemListContainer> */}
+      </BrowserRouter>
+      <ItemDetailContainer activeID={activeItem} />
     </>
   );
 }
