@@ -5,53 +5,32 @@ import ItemDetail from './ItemDetail'
 import PropTypes from 'prop-types'
 
 
-const ItemDetailContainer = ({ activeID }) => {
-    const filter = activeID
+const ItemDetailContainer = ({ inventory }) => {
+    const filter = 136
     const [item, setItem] = useState()
-    const [loading, setLoading] = useState(true)
     //const [inventory, setInventory] = useState([]);
+    console.log('insideitemdetailcontianer')
 
     useEffect(() => {
-        const getDetail = () => {
-            fetch("inventory.json") // public is available for all of them
-                .then(response => response.json())
-                .then((data) => {
-                    var selectedShoe = data.find((shoe) => {
-                        return shoe.id === filter;
-                    })
-                    setItem(selectedShoe)
-                    setLoading(false)
-                })
-                .catch(error => {
-                    console.error("Error somethign happened in fetch", error)
-                })
-        }
 
-        setTimeout(() => {
-            getDetail()
-        }, 500)
-    }, [activeID])
+        let detailedShoe = inventory.find(({ id }) =>
+            id === filter
+        )
 
-    if (!loading) {
-        return (
-            <>
-                <div>
-                    <ItemDetail activeItem={item} />
-                </div>
-            </>
-        )
-    } else {
-        return (
-            <>
-                <div>
-                    Loading ICON
-                </div>
-            </>
-        )
-    }
+        setItem(detailedShoe)
+    }, [])
+
+    return (
+        <>
+            <div>
+                <ItemDetail activeItem={item} />
+            </div>
+        </>
+    )
 }
+
 ItemDetailContainer.propTypes = {
-    activeID: PropTypes.number
+    inventory: PropTypes.array
 }
 
 
