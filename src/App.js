@@ -8,25 +8,6 @@ import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
 import Home from './Components/Home'
 
 function App() {
-  const [catalog, setCatalog] = useState([])
-  useEffect(() => {
-    const getDetail = () => {
-      fetch(`inventory.json`)
-        .then(response => response.json())
-        .then((data) => {
-          console.log(JSON.stringify(data))
-          setCatalog(data)
-        })
-        .catch(error => {
-          console.error("Error somethign happened in fetch", error)
-        })
-    }
-
-    setTimeout(() => {
-      getDetail()
-      console.log("setData" + JSON.stringify(catalog))
-    }, 500)
-  }, [])
   return (
     <>
       <BrowserRouter>
@@ -34,10 +15,9 @@ function App() {
         <Routes>
           <Route path="/" element={<ItemListContainer />} />
           <Route path="/category/:categoryId" element={<ItemListContainer />} />
-          <Route path="/item" element={<ItemDetailContainer inventory={catalog} />} />
+          <Route path="/item/:itemId" element={<ItemDetailContainer />} />
         </Routes>
       </BrowserRouter>
-      <ItemDetailContainer inventory={catalog} />
     </>
   );
 }
