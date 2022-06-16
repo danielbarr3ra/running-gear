@@ -26,7 +26,7 @@
         "id": 136,
         "title": "Best trail",
         "model": "speadBull",
-        "type": "Trail",
+        "type": "trail",
         "stack": "8cm",
         "upper": "wieved",
         "stock": 2,

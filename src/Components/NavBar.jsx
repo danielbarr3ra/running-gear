@@ -3,7 +3,7 @@ import Brand from "./Brand"
 import CartWidget from "./CartWidget";
 import SearchBar from "./SearchBar";
 import AccountLogIn from "./AccountLogIn";
-
+import { Link } from "react-router-dom";
 const NavBar = () => {
     return (
         <>
@@ -15,12 +15,16 @@ const NavBar = () => {
                     <div className="navTab">
                         New
                     </div>
-                    <div className="navTab ">
-                        Road
-                    </div>
-                    <div className="navTab ">
-                        Trail
-                    </div>
+                    <Link to={"/category/road"}>
+                        <div className="navTab ">
+                            Road
+                        </div>
+                    </Link>
+                    <Link to={"/category/trail"}>
+                        <div className="navTab ">
+                            Trail
+                        </div>
+                    </Link>
                     <div className="navTab ">
                         Apperal
                     </div>

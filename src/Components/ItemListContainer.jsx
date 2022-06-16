@@ -2,13 +2,14 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import ItemList from "./ItemList";
+import { useParams } from "react-router-dom";
 
 
 const ItemListContainer = ({ greeting, clickDetails }) => {
     const [loading, setLoading] = useState()
     const [error, setError] = useState()
     const [catalog, setCatalog] = useState([])
-
+    const { categoryId } = useParams();
 
     useEffect(() => {
         setLoading(true) // loading until error or resolves
@@ -44,7 +45,7 @@ const ItemListContainer = ({ greeting, clickDetails }) => {
                         "id": 136,
                         "title": "Best trail",
                         "model": "speadBull",
-                        "type": "Trail",
+                        "type": "trail",
                         "stack": "8cm",
                         "upper": "wieved",
                         "stock": 2,
@@ -66,7 +67,7 @@ const ItemListContainer = ({ greeting, clickDetails }) => {
                     }
                 ]
                 res(mockInventory) // resolves the constant
-            }, 5000)
+            }, 1000)
         })
 
 
@@ -74,6 +75,12 @@ const ItemListContainer = ({ greeting, clickDetails }) => {
             .then((res) => {
                 // the data is the mockInventory
                 setCatalog(res)
+                if (categoryId === "road" || categoryId === "trail") {
+                    let answer = res.filter((shoe) => {
+                        return (shoe.type == categoryId)
+                    })
+                    setCatalog(answer)
+                }
             })
             .catch((error) => {
                 console.log(error)
@@ -82,13 +89,13 @@ const ItemListContainer = ({ greeting, clickDetails }) => {
             .finally(() => {
                 setLoading(false)
             })
-    }, []) //without the dependineces it will run infinelty the use effect.
+    }, [categoryId]) //without the dependineces it will run infinelty the use effect.
 
 
 
     return (
         <>
-            <h1 className="text-4xl mt-0 mb-2 text gray-900">{greeting}</h1>
+            <h1 className="text-4xl mt-0 mb-2 text gray-900">{greeting} catalog for {categoryId}</h1>
             <div> {loading && "loading catalog"} </div>
             <div> {error && "an error in loading catalog"} </div>
             <ItemList catalog={catalog} clickDetails={clickDetails} />
