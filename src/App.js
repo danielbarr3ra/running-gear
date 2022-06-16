@@ -8,28 +8,36 @@ import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
 import Home from './Components/Home'
 
 function App() {
-  const [activeItem, setActiveItem] = useState(135)
-  let { detailsID } = useParams()
-  const openDetails = (id) => {
-    console.log("hello theere")
-    setActiveItem(id)
-  }
-
+  const [catalog, setCatalog] = useState([])
   useEffect(() => {
-    console.log(activeItem)
-  }, [activeItem])
+    const getDetail = () => {
+      fetch(`inventory.json`)
+        .then(response => response.json())
+        .then((data) => {
+          console.log(JSON.stringify(data))
+          setCatalog(data)
+        })
+        .catch(error => {
+          console.error("Error somethign happened in fetch", error)
+        })
+    }
 
-
+    setTimeout(() => {
+      getDetail()
+      console.log("setData" + JSON.stringify(catalog))
+    }, 500)
+  }, [])
   return (
     <>
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<ItemListContainer clickDetails={openDetails} />} />
-          <Route path="/category/:categoryId" element={<ItemListContainer clickDetails={openDetails} />} />
+          <Route path="/" element={<ItemListContainer />} />
+          <Route path="/category/:categoryId" element={<ItemListContainer />} />
+          <Route path="/item" element={<ItemDetailContainer inventory={catalog} />} />
         </Routes>
       </BrowserRouter>
-      <ItemDetailContainer activeID={activeItem} />
+      <ItemDetailContainer inventory={catalog} />
     </>
   );
 }
