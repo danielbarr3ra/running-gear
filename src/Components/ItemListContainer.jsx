@@ -38,8 +38,6 @@ const ItemListContainer = ({ greeting }) => {
         setTimeout(() => {
             getInventory().catch("could not load data")
         }, 1000)
-        console.log(catalog)
-        console.log(categoryId)
     }, [categoryId])
 
 
