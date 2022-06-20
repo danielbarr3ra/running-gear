@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/solid";
 import PropTypes from 'prop-types'
 
-const ItemCount = ({ stock, initial, }) => {
+const ItemCount = ({ stock, initial, addOn }) => {
     const [cartCount, setCartCount] = useState(initial)
     const removingItem = () => {
         if (cartCount !== 0) {
@@ -19,23 +19,27 @@ const ItemCount = ({ stock, initial, }) => {
         }
     }
     return (
-        <div className="itemCount m-3 flex s">
+        <><div className="itemCount m-3 flex s">
             <button className="addItem">
                 <PlusCircleIcon onClick={addingItem} className="h-8 w-8 text-black-900" />
             </button>
             <div className="item count text-xl">
                 {cartCount}
             </div>
-            <div className="removeItem">
+            <button className="removeItem">
                 <MinusCircleIcon onClick={removingItem} className="h-8 w-8 text-black-900" />
-            </div>
-        </div>
+            </button>
+        </div><div>
+                <button type="button" className="px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-black-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" onClick={() => { addOn(cartCount) }}>Add To Cart</button>
+            </div></>
+
     )
 }
 
 ItemCount.propTypes = {
     stock: PropTypes.number,
-    initial: PropTypes.number
+    initial: PropTypes.number,
+    addOn: PropTypes.func
 }
 
 

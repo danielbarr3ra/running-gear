@@ -3,8 +3,14 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
-
-const ItemDetail = ({ id, stack, upper, type }) => {
+import ItemCount from './ItemCount'
+const ItemDetail = ({ id, stack, upper, type, stock }) => {
+    const [count, setCount] = useState(0)
+    // addToCart()
+    const addOn = (amount) => {
+        alert(`you have added ${amount} shoes to the cart`)
+        setCount(amount)
+    }
     return (
         <>
             <div key={id} className="wrapper bg-gray-400 antialiased text-gray-900">
@@ -31,6 +37,14 @@ const ItemDetail = ({ id, stack, upper, type }) => {
                                     <span className="text-teal-600 text-md font-semibold">4/5 ratings </span>
                                     <span className="text-sm text-gray-600">(based on 234 ratings)</span>
                                 </div>
+                                {
+                                    count > 0 ?
+                                        <Link to='/cart'>
+                                            <button type="button" className="px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-black-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">Go to checkout</button>
+                                        </Link> :
+                                        <ItemCount stock={stock} initial={0} addOn={addOn} />
+                                }
+
                             </div>
                         </div>
                     </div>
