@@ -12,20 +12,20 @@ import MyProvider from './Components/CartContext';
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<ItemListContainer />} />
-          <Route path="/category/:categoryId" element={<ItemListContainer />} />
-          <Route path="/item/:itemId" element={<ItemDetailContainer />} />
-          <Route path="/cart" element={
-            <MyProvider>
+      <MyProvider>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<ItemListContainer />} />
+            <Route path="/category/:categoryId" element={<ItemListContainer />} />
+            <Route path="/item/:itemId" element={<ItemDetailContainer />} />
+            <Route path="/cart" element={
               <CartContainer />
-            </MyProvider>
-          } />
-          {/* <Route path="/cart" element={<div>this is the cart</div>} /> */}
-        </Routes>
-      </BrowserRouter>
+            } />
+            {/* <Route path="/cart" element={<div>this is the cart</div>} /> */}
+          </Routes>
+        </BrowserRouter>
+      </MyProvider>
     </>
   );
 }
