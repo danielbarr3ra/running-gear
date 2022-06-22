@@ -6,6 +6,8 @@ import React, { useEffect, useState } from 'react';
 import ItemDetailContainer from './Components/ItemDetailContianer';
 import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
 import Home from './Components/Home'
+import CartContainer from './Components/CartContainer';
+import MyProvider from './Components/CartContext';
 
 function App() {
   return (
@@ -16,7 +18,12 @@ function App() {
           <Route path="/" element={<ItemListContainer />} />
           <Route path="/category/:categoryId" element={<ItemListContainer />} />
           <Route path="/item/:itemId" element={<ItemDetailContainer />} />
-          <Route path="/cart" element={<div>this is the cart</div>} />
+          <Route path="/cart" element={
+            <MyProvider>
+              <CartContainer />
+            </MyProvider>
+          } />
+          {/* <Route path="/cart" element={<div>this is the cart</div>} /> */}
         </Routes>
       </BrowserRouter>
     </>
