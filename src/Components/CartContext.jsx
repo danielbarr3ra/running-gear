@@ -4,7 +4,6 @@ import { createContext, useState } from "react";
 
 export const CartContext = createContext({});
 
-//const { Provider } = CartContext;
 
 const MyProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
@@ -20,12 +19,11 @@ const MyProvider = ({ children }) => {
         }
     }
 
-    // Detecta si el producto ya esta en el carrito TRUE / FALSE
     const isInCart = (id) => {
         return cart.some((shoe) => shoe.id === id);
     };
 
-    // Vacia el carrito
+
     const emptyCart = () => {
         setCart([]);
     };
@@ -38,7 +36,6 @@ const MyProvider = ({ children }) => {
         return cart.reduce((total, item) => (total += item.cartQuantity), 0);
     };
 
-    // devuelve el precio del producto
     const getItemPrice = () => {
         return cart.reduce((totalPrice, item) => (totalPrice += item.price * item.cartQuantity), 0);
     };
