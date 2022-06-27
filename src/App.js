@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import ItemDetailContainer from './Components/ItemDetailContianer';
 import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
 import Home from './Components/Home'
-import CartContainer from './Components/CartContainer';
+import Cart from './Components/Cart';
 import MyProvider from './Components/CartContext';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
             <Route path="/category/:categoryId" element={<ItemListContainer />} />
             <Route path="/item/:itemId" element={<ItemDetailContainer />} />
             <Route path="/cart" element={
-              <CartContainer />
+              <Cart />
             } />
             {/* <Route path="/cart" element={<div>this is the cart</div>} /> */}
           </Routes>
