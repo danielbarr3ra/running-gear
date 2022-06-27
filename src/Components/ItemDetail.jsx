@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useContext } from "react";
@@ -5,7 +6,7 @@ import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 import ItemCount from './ItemCount'
 import { CartContext } from "./CartContext";
-const ItemDetail = ({ id, model, stack, upper, type, stock }) => {
+const ItemDetail = ({ id, model, stack, upper, type, stock, price }) => {
     const [count, setCount] = useState(0)
     const { cart, isInCart, addItem, deleteItem, emptyCart, getItemQty, getItemPrice, test } = useContext(CartContext)
     // addToCart()
@@ -15,7 +16,8 @@ const ItemDetail = ({ id, model, stack, upper, type, stock }) => {
         addItem({
             model,
             type,
-            id
+            id,
+            price
         }, amount)
     }
     return (
