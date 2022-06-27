@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useEffect } from "react";
 import { createContext, useState } from "react";
 
 export const CartContext = createContext({});
@@ -8,7 +9,12 @@ const { Provider } = CartContext
 
 const MyProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
+    const [cartSize, setCartSize] = useState(0);
 
+    useEffect(() => {
+        console.log(sizeCart())
+        setCartSize(sizeCart)
+    }, [cart])
     const addItem = (item, quantity) => {
         const anItem = {
             ...item,
@@ -52,8 +58,13 @@ const MyProvider = ({ children }) => {
         alert("hey there")
     }
 
+    const sizeCart = () => {
+        return cart.reduce(function (a, b) {
+            return a + b.quantity;
+        }, 0);
+    }
     return (
-        <Provider value={{ cart, isInCart, addItem, deleteItem, emptyCart, getItemQty, getItemPrice, test }}> {children} </Provider>);
+        <Provider value={{ cart, isInCart, addItem, deleteItem, emptyCart, getItemQty, getItemPrice, test, cartSize }}> {children} </Provider>);
 };
 
 export default MyProvider;
