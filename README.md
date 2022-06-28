@@ -1,6 +1,8 @@
-# Hey Rodrigo
-Added the detail and detail container components
-limpie codigo
+# Hi Rodrigo
+Agregue context en cart.jsx tambien agregue cartItemList para dar mas formato al ui ahi.
 
-https://user-images.githubusercontent.com/49797284/174464161-cbfe88b7-c352-4553-ac6d-aff76296c4cf.mov
+
+
+
+https://user-images.githubusercontent.com/49797284/176069109-c9bbb8f4-a05d-4bef-9fa8-55a126891a9f.mov
 
