@@ -29,7 +29,6 @@ const MyProvider = ({ children }) => {
         } else {
             setCart([...cart, anItem]);
         }
-        alert("addedItem from Context")
 
     }
 
