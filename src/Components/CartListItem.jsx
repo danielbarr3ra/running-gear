@@ -18,7 +18,11 @@ const CartListItem = ({ location }) => {
                 </div>
                 <div className="flex flex-col justify-between ml-4 flex-grow">
                     <span className="font-bold text-sm">{model}</span>
-                    <a href="#" className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
+                    <a href="#" className="font-semibold hover:text-red-500 text-gray-500 text-xs" onClick={
+                        () => {
+                            deleteItem(id)
+                        }
+                    }>Remove</a>
                 </div>
             </div>
             <div className="flex justify-center w-1/5">
