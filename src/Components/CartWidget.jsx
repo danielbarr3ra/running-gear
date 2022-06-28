@@ -5,17 +5,19 @@ import PropTypes from 'prop-types';
 import { CartContext } from "./CartContext";
 import { useContext } from "react";
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom";
 
 const CartWidget = () => {
     const { cartSize } = useContext(CartContext)
     if (cartSize > 0) {
         return (
-            <>
+            <Link to={"/cart"}>
                 <div className="flex items-center justify-center">
                     <div className="italic"> {cartSize} </div>
                     <ShoppingCartIcon className="h-8 w-8 text-black-100" />
                 </div>
-            </>
+            </Link>
+
         )
     } else {
         return (
