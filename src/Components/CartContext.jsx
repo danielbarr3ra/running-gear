@@ -10,10 +10,11 @@ const { Provider } = CartContext
 const MyProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const [cartSize, setCartSize] = useState(0);
+    const [cartPrice, setCartPrice] = useState(0);
 
     useEffect(() => {
-        console.log(sizeCart())
         setCartSize(sizeCart)
+        setCartPrice(getItemPrice)
     }, [cart])
     const addItem = (item, quantity) => {
         const anItem = {
@@ -50,8 +51,10 @@ const MyProvider = ({ children }) => {
     };
 
     const getItemPrice = () => {
-        return cart.reduce((totalPrice, item) => (totalPrice += item.price * item.cartQuantity), 0);
-    };
+        return cart.reduce(function (a, b) {
+            return a + b.quantity * b.price;
+        }, 0);
+    }
 
     const test = () => {
         alert("hey there")
@@ -63,7 +66,7 @@ const MyProvider = ({ children }) => {
         }, 0);
     }
     return (
-        <Provider value={{ cart, isInCart, addItem, deleteItem, emptyCart, getItemQty, getItemPrice, test, cartSize }}> {children} </Provider>);
+        <Provider value={{ cart, isInCart, addItem, deleteItem, emptyCart, getItemQty, getItemPrice, test, cartSize, cartPrice }}> {children} </Provider>);
 };
 
 export default MyProvider;
