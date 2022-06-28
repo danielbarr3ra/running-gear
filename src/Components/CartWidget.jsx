@@ -8,14 +8,20 @@ import { useState, useEffect } from "react"
 
 const CartWidget = () => {
     const { cartSize } = useContext(CartContext)
-    return (
-        <>
-            <div className="flex items-center justify-center">
-                <div className="italic"> {cartSize} </div>
-                <ShoppingCartIcon className="h-8 w-8 text-black-100" />
-            </div>
-        </>
-    )
+    if (cartSize > 0) {
+        return (
+            <>
+                <div className="flex items-center justify-center">
+                    <div className="italic"> {cartSize} </div>
+                    <ShoppingCartIcon className="h-8 w-8 text-black-100" />
+                </div>
+            </>
+        )
+    } else {
+        return (
+            <></>
+        )
+    }
 }
 
 CartWidget.propTypes = {
