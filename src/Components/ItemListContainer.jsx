@@ -1,8 +1,11 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
+import { collection, doc, getDoc, getFirestore, getDocs, query, where } from "firebase/firestore"
+
 
 
 const ItemListContainer = ({ greeting }) => {
@@ -12,32 +15,17 @@ const ItemListContainer = ({ greeting }) => {
     const { categoryId } = useParams();
 
     // returns a promis that needs to be handled
-    const getInventory = async () => {
-        const response = await fetch('/inventory.json', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-        const invetory = await response.json()
-        if (categoryId === "road" || categoryId === "trail") {
-            let filter = invetory.filter((shoe) => {
-                return (shoe.type == categoryId)
-            })
-            setCatalog(filter)
-        } else {
-            setCatalog(invetory)
-        }
-        setLoading(false)
-    }
-
 
     useEffect(() => {
-        setLoading(true) // loading until error or resolves
-        setError(false)
-        setTimeout(() => {
-            getInventory().catch("could not load data")
-        }, 1000)
+        const db = getFirestore();
+        const itemsFromCollection = collection(db, "items");
+        getDocs(itemsFromCollection).then((snapshot) => {
+            setCatalog(snapshot.docs.map((doc) => ({
+                id: doc.id, ...doc.data()
+            })))
+        }).then(
+            console.log(catalog)
+        )
     }, [categoryId])
 
 
