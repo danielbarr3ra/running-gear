@@ -8,8 +8,24 @@ import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
 import Home from './Components/Home'
 import Cart from './Components/Cart';
 import MyProvider from './Components/CartContext';
+import Test from './Components/Test';
+
+
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
 function App() {
+  const firebaseConfig = {
+    apiKey: "AIzaSyAoIfKcxV3rp2u-jjXNg-3HDoWJkctnb9s",
+    authDomain: "running-gear.firebaseapp.com",
+    projectId: "running-gear",
+    storageBucket: "running-gear.appspot.com",
+    messagingSenderId: "708748387871",
+    appId: "1:708748387871:web:b3790e7716f04d1aef972a"
+  };
+
+  const app = initializeApp(firebaseConfig);
+
   return (
     <>
       <MyProvider>
@@ -22,7 +38,9 @@ function App() {
             <Route path="/cart" element={
               <Cart />
             } />
-            {/* <Route path="/cart" element={<div>this is the cart</div>} /> */}
+            <Route path="/FireBase" element={
+              <Test />
+            } />
           </Routes>
         </BrowserRouter>
       </MyProvider>
