@@ -1,21 +1,52 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import { doc, getDoc, getFirestore } from "firebase/firestore"
+import React, { useEffect, useState } from "react";
+import { collection, doc, getDoc, getFirestore, getDocs, query, where } from "firebase/firestore"
 
 const Test = () => {
-    const id = "3SBN8Mo09SvZ1nZhD53O"
-    const collection = 'items'
-    const db = getFirestore();
-    const docItem = doc(db, collection, id);
-    getDoc(docItem).then(
-        (res) => {
-            console.log(res.data())
-            console.log(res.exists())
-        }
-    )
+    const [inventory, setInventory] = useState([])
+    const [filtered, setFiltered] = useState([])
+    useEffect(() => {
+        const id = "3SBN8Mo09SvZ1nZhD53O"
+        const aCollection = 'items'
+        const db = getFirestore();
+        const docItem = doc(db, aCollection, id);
+        getDoc(docItem).then(
+            (res) => {
+                console.log(res.data())
+            }
+        )
+
+        const itemsFromCollection = collection(db, "items");
+        getDocs(itemsFromCollection).then((snapshot) => {
+            setInventory(snapshot.docs.map((doc) => ({
+                id: doc.id, ...doc.data()
+            })))
+        }).then(
+            console.log(inventory)
+        )
+
+        // using query
+        const q = query(
+            collection(db, 'items'),
+            where("type", "==", "trail")
+        )
+        getDocs(q).then((snapshot) => {
+            setFiltered(snapshot.docs.map((doc) => ({
+                id: doc.id, ...doc.data()
+            })))
+        }).then(
+            console.log(filtered)
+        )
+
+    }, [])
+    //get array of objects from collection
+
     return (
         <div>
-            <h1> hey test</h1>
+            <h1>All of it</h1>
+            {JSON.stringify(inventory)}
+            <h1>Filtered</h1>
+            {JSON.stringify(filtered)}
         </div>
     )
 }
