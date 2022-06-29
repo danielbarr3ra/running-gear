@@ -19,13 +19,28 @@ const ItemListContainer = ({ greeting }) => {
     useEffect(() => {
         const db = getFirestore();
         const itemsFromCollection = collection(db, "items");
-        getDocs(itemsFromCollection).then((snapshot) => {
-            setCatalog(snapshot.docs.map((doc) => ({
-                id: doc.id, ...doc.data()
-            })))
-        }).then(
-            console.log(catalog)
-        )
+
+        if (categoryId == 'road' || categoryId == 'trail') {
+            let q = query(
+                collection(db, 'items'),
+                where("type", "==", categoryId)
+            )
+            getDocs(q).then((snapshot) => {
+                setCatalog(snapshot.docs.map((doc) => ({
+                    id: doc.id, ...doc.data()
+                })))
+            }).then(
+                console.log(catalog)
+            )
+        } else {
+            getDocs(itemsFromCollection).then((snapshot) => {
+                setCatalog(snapshot.docs.map((doc) => ({
+                    id: doc.id, ...doc.data()
+                })))
+            }).then(
+                console.log(catalog)
+            )
+        }
     }, [categoryId])
 
 
