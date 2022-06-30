@@ -5,6 +5,7 @@ import { collection, doc, getDoc, getFirestore, getDocs, query, where } from "fi
 const Test = () => {
     const [inventory, setInventory] = useState([])
     const [filtered, setFiltered] = useState([])
+    const [item, setItem] = useState()
     useEffect(() => {
         const id = "3SBN8Mo09SvZ1nZhD53O"
         const aCollection = 'items'
@@ -12,9 +13,13 @@ const Test = () => {
         const docItem = doc(db, aCollection, id);
         getDoc(docItem).then(
             (res) => {
-                console.log(res.data())
+                setItem({
+                    id: id,
+                    ...res.data()
+                })
             }
         )
+        console.log(item)
 
         const itemsFromCollection = collection(db, "items");
         getDocs(itemsFromCollection).then((snapshot) => {
@@ -43,6 +48,8 @@ const Test = () => {
 
     return (
         <div>
+            <h1>item</h1>
+            {JSON.stringify(item)}
             <h1>All of it</h1>
             {JSON.stringify(inventory)}
             <h1>Filtered</h1>

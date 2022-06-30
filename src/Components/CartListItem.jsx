@@ -8,13 +8,13 @@ import { CartContext } from "./CartContext";
 const CartListItem = ({ location }) => {
     const { cart, isInCart, addItem, deleteItem, emptyCart, getItemQty, getItemPrice, test, cartSize } = useContext(CartContext)
     let shoe = cart[location]
-    let { id, model, quantity, price } = cart[location]
+    let { id, model, quantity, price, imageUrl } = cart[location]
 
     return (
         <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
             <div className="flex w-2/5">
                 <div className="w-20">
-                    <img className="h-24" src={require(`../images/${id}.jpeg`)} alt="" ></img>
+                    <img className="h-24" src={require(`../${imageUrl}`)} alt="" ></img>
                 </div>
                 <div className="flex flex-col justify-between ml-4 flex-grow">
                     <span className="font-bold text-sm">{model}</span>

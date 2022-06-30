@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 import ItemCount from './ItemCount'
 import { CartContext } from "./CartContext";
-const ItemDetail = ({ id, model, stack, upper, type, stock, price }) => {
+const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) => {
     const [count, setCount] = useState(0)
     const { cart, isInCart, addItem, deleteItem, emptyCart, getItemQty, getItemPrice, test } = useContext(CartContext)
     // addToCart()
@@ -17,7 +17,8 @@ const ItemDetail = ({ id, model, stack, upper, type, stock, price }) => {
             model,
             type,
             id,
-            price
+            price,
+            imageUrl,
         }, amount)
     }
     return (
@@ -37,7 +38,7 @@ const ItemDetail = ({ id, model, stack, upper, type, stock, price }) => {
                                     </div>
                                 </div>
 
-                                <h4 className="mt-1 text-xl font-semibold uppercase leading-tight truncate">ShoeDetials</h4>
+                                <h4 className="mt-1 text-xl font-semibold uppercase leading-tight truncate">ShoeDetials for {model}</h4>
 
                                 <div className="mt-1">
                                     surface type: {type}

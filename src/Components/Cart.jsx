@@ -39,7 +39,7 @@ const Cart = () => {
                         </div>
 
                         {cart.map((item, index) => {
-                            const { quantity, id, model, price } = item
+                            const { quantity, id, model, price, imageUrl } = item
                             if (item.quantity > 0) {
                                 return (<CartListItem key={index} location={index} />)
                             }
