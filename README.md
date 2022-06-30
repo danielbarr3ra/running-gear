@@ -1,5 +1,4 @@
-# Hi Rodrigo
-Agregue context en cart.jsx tambien agregue cartItemList para dar mas formato al ui ahi.
+Removed asyncs and using firestore and firebase quereis now
 
 
 
