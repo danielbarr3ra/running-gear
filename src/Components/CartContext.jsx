@@ -11,10 +11,19 @@ const MyProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const [cartSize, setCartSize] = useState(0);
     const [cartPrice, setCartPrice] = useState(0);
+    const [initiallyFetched, setInitiallyFetched] = useState()
 
+    useEffect(() => {
+        let previousSession = JSON.parse(localStorage.getItem('cart')) || [];
+        setCart(previousSession)
+        setInitiallyFetched(true)
+    }, [])
     useEffect(() => {
         setCartSize(sizeCart)
         setCartPrice(getItemPrice)
+        if (initiallyFetched) {
+            localStorage.setItem("cart", JSON.stringify(cart))
+        }
     }, [cart])
     const addItem = (item, quantity) => {
         const anItem = {
