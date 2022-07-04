@@ -1,13 +1,30 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "./CartContext";
 import CartListItem from "./CartListItem";
 import ItemListContainer from "./ItemListContainer";
 import { Link } from "react-router-dom";
+import { collection, doc, getDoc, getFirestore, getDocs, query, where, addDoc } from "firebase/firestore"
+
 
 const Cart = () => {
     const { cart, isInCart, addItem, deleteItem, emptyCart, getItemQty, getItemPrice, test, cartSize, cartPrice } = useContext(CartContext)
 
+    const submitOrder = () => {
+        const order = {
+            buyer: {
+                email: 'email1@gmail.com',
+                name: 'test1',
+                phone: '000000000'
+            },
+            items: {
+                ...cart
+            }
+        }
+        const db = getFirestore();
+        const orders = collection(db, 'orders')
+        addDoc(orders, order).then(({ id }) => alert(id))
+    }
     if (cart.length == 0) {
         return (<><div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <strong className="font-bold">Hold on there buckaroo!</strong>
@@ -75,7 +92,7 @@ const Cart = () => {
                                 <span>Total cost</span>
                                 <span>{cartPrice - 10}</span>
                             </div>
-                            <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+                            <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full" onClick={submitOrder}>Checkout</button>
                         </div>
                     </div>
                 </div>
