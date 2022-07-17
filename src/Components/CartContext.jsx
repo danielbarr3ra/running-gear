@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React, { useEffect } from "react";
 import { createContext, useState } from "react";
+import PropTypes from 'prop-types';
 
 export const CartContext = createContext({});
-
 const { Provider } = CartContext
 
 const MyProvider = ({ children }) => {
@@ -77,5 +75,9 @@ const MyProvider = ({ children }) => {
     return (
         <Provider value={{ cart, isInCart, addItem, deleteItem, emptyCart, getItemQty, getItemPrice, test, cartSize, cartPrice }}> {children} </Provider>);
 };
+
+MyProvider.propTypes = {
+    children: PropTypes.element
+}
 
 export default MyProvider;
