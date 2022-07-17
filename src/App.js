@@ -6,7 +6,6 @@ import ItemDetailContainer from './Components/ItemDetailContianer';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Cart from './Components/Cart';
 import MyProvider from './Components/CartContext';
-import Test from './Components/Test';
 import { initializeApp } from "firebase/app";
 
 
@@ -33,9 +32,6 @@ function App() {
             <Route path="/item/:itemId" element={<ItemDetailContainer />} />
             <Route path="/cart" element={
               <Cart />
-            } />
-            <Route path="/FireBase" element={
-              <Test />
             } />
           </Routes>
         </BrowserRouter>
