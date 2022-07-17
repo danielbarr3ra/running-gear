@@ -1,12 +1,9 @@
-/* eslint-disable no-undef */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
 import PropTypes from 'prop-types'
 import { CartContext } from "./CartContext";
 
 const CartListItem = ({ location }) => {
-    const { cart, isInCart, addItem, deleteItem, emptyCart, getItemQty, getItemPrice, test, cartSize } = useContext(CartContext)
+    const { cart, addItem, deleteItem } = useContext(CartContext)
     let shoe = cart[location]
     let { id, model, quantity, price, imageUrl } = cart[location]
 
@@ -50,5 +47,10 @@ const CartListItem = ({ location }) => {
         </div>
     )
 }
+
+CartListItem.propTypes = {
+    location: PropTypes.string,
+}
+
 
 export default CartListItem
