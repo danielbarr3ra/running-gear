@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import { ShoppingCartIcon } from "@heroicons/react/outline"
 import PropTypes from 'prop-types';
 import { CartContext } from "./CartContext";
 import { useContext } from "react";
-import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 
 const CartWidget = () => {
