@@ -1,14 +1,12 @@
-/* eslint-disable no-unused-vars */
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "./CartContext";
 import CartListItem from "./CartListItem";
-import ItemListContainer from "./ItemListContainer";
 import { Link } from "react-router-dom";
-import { collection, doc, getDoc, getFirestore, getDocs, query, where, addDoc } from "firebase/firestore"
+import { collection, getFirestore, addDoc } from "firebase/firestore"
 
 
 const Cart = () => {
-    const { cart, isInCart, addItem, deleteItem, emptyCart, getItemQty, getItemPrice, test, cartSize, cartPrice } = useContext(CartContext)
+    const { cart, cartSize, cartPrice } = useContext(CartContext)
 
     const submitOrder = () => {
         const order = {
@@ -56,7 +54,6 @@ const Cart = () => {
                         </div>
 
                         {cart.map((item, index) => {
-                            const { quantity, id, model, price, imageUrl } = item
                             if (item.quantity > 0) {
                                 return (<CartListItem key={index} location={index} />)
                             }
