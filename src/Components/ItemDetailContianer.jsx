@@ -1,10 +1,7 @@
-/* eslint-disable no-unused-vars */
-//import React, { useState, useEffect } from "react";
 import React, { useEffect, useState } from "react"
 import ItemDetail from './ItemDetail'
-import PropTypes from 'prop-types'
 import { useParams } from "react-router-dom"
-import { collection, doc, getDoc, getFirestore, getDocs, query, where } from "firebase/firestore"
+import { doc, getDoc, getFirestore } from "firebase/firestore"
 
 
 
