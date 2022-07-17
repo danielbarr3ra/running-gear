@@ -1,20 +1,16 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
-import { collection, doc, getDoc, getFirestore, getDocs, query, where } from "firebase/firestore"
+import { collection, getFirestore, getDocs, query, where } from "firebase/firestore"
 
 
 
 const ItemListContainer = ({ greeting }) => {
-    const [loading, setLoading] = useState()
-    const [error, setError] = useState()
+    const [loading] = useState()
+    const [error] = useState()
     const [catalog, setCatalog] = useState([])
     const { categoryId } = useParams();
-
-    // returns a promis that needs to be handled
 
     useEffect(() => {
         const db = getFirestore();
