@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const Item = ({ title, model, price, imageUrl, id }) => {
     const routePath = `/item/${id}`
     return (
-        <div className="wrapper max-w-sm flex-col justify-between text-black 800 rounded-lg bg-gray-100 shadow-lg content-center">
-            <img className=" h-1/2 max-w-sm rounded-lg" src={require(`../${imageUrl}`)}></img>
+        <div className="justify-around rounded-lg bg-gray-100 shadow-lg">
+            <img className="object-cover h-48 w-96" src={require(`../${imageUrl}`)}></img>
             <div className="p-10 flex-col justify-between">
                 <h5 className="text-gray-900 text-xl font-medium mb-2">Voted: {title}</h5>
                 <p className="text-gray-700 text-base mb-4"> {model} </p>
