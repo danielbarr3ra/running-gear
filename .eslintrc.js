@@ -1,8 +1,8 @@
 module.exports = {
     "env": {
-        "amd": true
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "node": true,
     },
     "extends": [
         "eslint:recommended",
