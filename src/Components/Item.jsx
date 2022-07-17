@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-undef */
 import React from "react";
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
@@ -16,7 +14,6 @@ const Item = ({ title, model, price, imageUrl, id }) => {
                 <Link to={routePath} >
                     <button type="button" className="px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-black-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">Details</button>
                 </Link>
-                {/**add detail click here to have the pop of the container using fire rays. */}
             </div>
         </div>
     )
@@ -27,7 +24,8 @@ Item.propTypes = {
     price: PropTypes.number,
     stock: PropTypes.number,
     model: PropTypes.string,
-    imageUrl: PropTypes.string
+    imageUrl: PropTypes.string,
+    id: PropTypes.number
 }
 
 export default Item
