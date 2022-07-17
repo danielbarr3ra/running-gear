@@ -1,14 +1,11 @@
-/* eslint-disable no-undef */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 import ItemCount from './ItemCount'
 import { CartContext } from "./CartContext";
 const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) => {
     const [count, setCount] = useState(0)
-    const { cart, isInCart, addItem, deleteItem, emptyCart, getItemQty, getItemPrice, test } = useContext(CartContext)
+    const { addItem } = useContext(CartContext)
     // addToCart()
     const addOn = (amount) => {
         alert(`you have added ${amount} shoes to the cart`)
@@ -62,6 +59,19 @@ const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) =
             </div></>
     )
 }
+
+ItemDetail.propTypes = {
+    title: PropTypes.string,
+    price: PropTypes.number,
+    stock: PropTypes.number,
+    model: PropTypes.string,
+    imageUrl: PropTypes.string,
+    id: PropTypes.number,
+    stack: PropTypes.string,
+    upper: PropTypes.string,
+    type: PropTypes.string
+}
+
 
 
 
