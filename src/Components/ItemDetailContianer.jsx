@@ -26,7 +26,7 @@ const ItemDetailContainer = () => {
 
     return (
         <>
-            <div>
+            <div className="flex flex-wrap justify-around">
                 <ItemDetail {...item} />
             </div>
         </>

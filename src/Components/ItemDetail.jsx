@@ -31,40 +31,24 @@ const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) =
                     <li className="flex space-x-3">
                         {/* <!-- Icon --> */}
                         <BadgeCheckIcon className="h-5 w-5" />
-                        <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">2 team members</span>
+                        <span className="text-base font-normal leading-tight text-gray-800 dark:text-gray-800">Stack: {stack}</span>
                     </li>
                     <li className="flex space-x-3">
                         {/* <!-- Icon --> */}
                         <BadgeCheckIcon className="h-5 w-5" />
-                        <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">20GB Cloud storage</span>
+                        <span className="text-base font-normal leading-tight text-gray-800 dark:text-gray-800">Upper: {upper}</span>
                     </li>
                     <li className="flex space-x-3">
                         {/* <!-- Icon --> */}
                         <BadgeCheckIcon className="h-5 w-5" />
-                        <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">Integration help</span>
+                        <span className="text-base font-normal leading-tight text-gray-800 dark:text-gray-800"> surface type: {type}</span>
                     </li>
                     <li className="flex space-x-3 line-through decoration-gray-500">
                         {/* <!-- Icon --> */}
                         <BadgeCheckIcon className="h-5 w-5" />
-                        <span className="text-base font-normal leading-tight text-gray-500">Sketch Files</span>
-                    </li>
-                    <li className="flex space-x-3 line-through decoration-gray-500">
-                        {/* <!-- Icon --> */}
-                        <BadgeCheckIcon className="h-5 w-5" />
-                        <span className="text-base font-normal leading-tight text-gray-500">API Access</span>
-                    </li>
-                    <li className="flex space-x-3 line-through decoration-gray-500">
-                        {/* <!-- Icon --> */}
-                        <BadgeCheckIcon className="h-5 w-5" />
-                        <span className="text-base font-normal leading-tight text-gray-500">Complete documentation</span>
-                    </li>
-                    <li className="flex space-x-3 line-through decoration-gray-500">
-                        {/* <!-- Icon --> */}
-                        <BadgeCheckIcon className="h-5 w-5" />
-                        <span className="text-base font-normal leading-tight text-gray-500">24×7 phone &amp; email support</span>
+                        <span className="text-base font-normal leading-tight text-gray-800">Gorex Waterproof</span>
                     </li>
                 </ul>
-                <button type="button" className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Choose plan</button>
                 {
                     count > 0 ?
                         <Link to='/cart'>
@@ -73,44 +57,7 @@ const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) =
                         <ItemCount stock={stock} initial={0} addOn={addOn} />
                 }
             </div>
-
-            <div key={id} className="wrapper bg-gray-400 antialiased text-gray-900">
-                <img src="/logo192.png" alt="" />
-                <div>
-                    <div>
-                        <div className="relative px-4 -mt-16 ">
-                            <div className="bg-white p-6 rounded-lg shadow-lg bg-gray-100 bg-repeat w-full h-full heropattern-topography-red-100">
-                                <div className="flex items-baseline">
-                                    <span className="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
-                                        Stack: {stack}
-                                    </span>
-                                    <div className="ml-2 text-gray-600 uppercase text-xs font-semibold tracking-wider">
-                                        Upper: {upper}  &bull; 3 Stack: {stack}
-                                    </div>
-                                </div>
-
-                                <h4 className="mt-1 text-xl font-semibold uppercase leading-tight truncate">ShoeDetials for {model}</h4>
-
-                                <div className="mt-1">
-                                    surface type: {type}
-                                </div>
-                                <div className="mt-4">
-                                    <span className="text-teal-600 text-md font-semibold">4/5 ratings </span>
-                                    <span className="text-sm text-gray-600">(based on 234 ratings)</span>
-                                </div>
-                                {
-                                    count > 0 ?
-                                        <Link to='/cart'>
-                                            <button type="button" className="px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-black-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">Go to checkout</button>
-                                        </Link> :
-                                        <ItemCount stock={stock} initial={0} addOn={addOn} />
-                                }
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div></>
+        </>
     )
 }
 
