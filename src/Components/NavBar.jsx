@@ -14,7 +14,7 @@ const NavBar = () => {
     }
     return (
         <>
-            <nav className="flex items-center flex-wrap p-6 bg-gray-100 bg-repeat w-full h-full heropattern-topography-red-400 justify-between hidden md:flex items-center space-x-1">
+            <nav className="flex items-center flex-wrap p-6 bg-gray-100 bg-repeat w-full h-full heropattern-topography-red-300 justify-between hidden md:flex items-center space-x-1">
                 <div className="flex items-center ">
                     <Brand />
                 </div>

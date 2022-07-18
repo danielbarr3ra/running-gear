@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 import ItemCount from './ItemCount'
 import { CartContext } from "./CartContext";
+import { BadgeCheckIcon } from "@heroicons/react/solid"
+
 const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) => {
     const [count, setCount] = useState(0)
     const { addItem } = useContext(CartContext)
@@ -18,6 +20,60 @@ const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) =
     }
     return (
         <>
+            <div className="p-4 max-w-sm bg-white rounded-lg border shadow-md sm:p-8 bg-gray-100 bg-repeat w-full h-full heropattern-bubbles-red-200">
+                <h5 className="mb-4 text-xl font-medium text-black-500 dark:text-black-400">{model}</h5>
+                <div className="flex items-baseline text-gray-900 dark:text-black">
+                    <span className="text-3xl font-semibold">$</span>
+                    <span className="text-5xl black-900 font-extrabold tracking-tight">{price}</span>
+                </div>
+                {/* <!-- List --> */}
+                <ul role="list" className="my-7 space-y-5">
+                    <li className="flex space-x-3">
+                        {/* <!-- Icon --> */}
+                        <BadgeCheckIcon className="h-5 w-5" />
+                        <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">2 team members</span>
+                    </li>
+                    <li className="flex space-x-3">
+                        {/* <!-- Icon --> */}
+                        <BadgeCheckIcon className="h-5 w-5" />
+                        <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">20GB Cloud storage</span>
+                    </li>
+                    <li className="flex space-x-3">
+                        {/* <!-- Icon --> */}
+                        <BadgeCheckIcon className="h-5 w-5" />
+                        <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">Integration help</span>
+                    </li>
+                    <li className="flex space-x-3 line-through decoration-gray-500">
+                        {/* <!-- Icon --> */}
+                        <BadgeCheckIcon className="h-5 w-5" />
+                        <span className="text-base font-normal leading-tight text-gray-500">Sketch Files</span>
+                    </li>
+                    <li className="flex space-x-3 line-through decoration-gray-500">
+                        {/* <!-- Icon --> */}
+                        <BadgeCheckIcon className="h-5 w-5" />
+                        <span className="text-base font-normal leading-tight text-gray-500">API Access</span>
+                    </li>
+                    <li className="flex space-x-3 line-through decoration-gray-500">
+                        {/* <!-- Icon --> */}
+                        <BadgeCheckIcon className="h-5 w-5" />
+                        <span className="text-base font-normal leading-tight text-gray-500">Complete documentation</span>
+                    </li>
+                    <li className="flex space-x-3 line-through decoration-gray-500">
+                        {/* <!-- Icon --> */}
+                        <BadgeCheckIcon className="h-5 w-5" />
+                        <span className="text-base font-normal leading-tight text-gray-500">24×7 phone &amp; email support</span>
+                    </li>
+                </ul>
+                <button type="button" className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Choose plan</button>
+                {
+                    count > 0 ?
+                        <Link to='/cart'>
+                            <button type="button" className="text-white bg-gray-700 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-red-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Go to checkout</button>
+                        </Link> :
+                        <ItemCount stock={stock} initial={0} addOn={addOn} />
+                }
+            </div>
+
             <div key={id} className="wrapper bg-gray-400 antialiased text-gray-900">
                 <img src="/logo192.png" alt="" />
                 <div>
