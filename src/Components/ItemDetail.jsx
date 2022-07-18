@@ -6,9 +6,7 @@ import { CartContext } from "./CartContext";
 const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) => {
     const [count, setCount] = useState(0)
     const { addItem } = useContext(CartContext)
-    // addToCart()
     const addOn = (amount) => {
-        alert(`you have added ${amount} shoes to the cart`)
         setCount(amount)
         addItem({
             model,
