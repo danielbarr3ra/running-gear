@@ -12,9 +12,11 @@ const NavBar = () => {
                     <Brand />
                 </div>
                 <nav className="flex items-center justify-around w-4/12 font-semibold text-l">
-                    <div className="navTab">
-                        New
-                    </div>
+                    <Link to={"/category/new"}>
+                        <div className="navTab">
+                            New
+                        </div>
+                    </Link>
                     <Link to={"/category/road"}>
                         <div className="navTab ">
                             Road
@@ -25,9 +27,11 @@ const NavBar = () => {
                             Trail
                         </div>
                     </Link>
-                    <div className="navTab ">
-                        Apperal
-                    </div>
+                    <Link to={"/category/apperal"}>
+                        <div className="navTab ">
+                            Apperal
+                        </div>
+                    </Link>
                 </nav>
                 <div className="sessionNavigation flex justify-around w-3/12">
                     <div className="searchBar">
