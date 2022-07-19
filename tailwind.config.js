@@ -14,5 +14,7 @@ module.exports = {
   },
   plugins: [
     require('tailwindcss-hero-patterns'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio')
   ],
 }
