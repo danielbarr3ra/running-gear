@@ -11,12 +11,12 @@ const ItemListContainer = ({ greeting }) => {
     const [error] = useState()
     const [catalog, setCatalog] = useState([])
     const { categoryId } = useParams();
-
+    const cattegories = ['road', 'trail', 'sandal', 'new']
     useEffect(() => {
         const db = getFirestore();
         const itemsFromCollection = collection(db, "items");
 
-        if (categoryId == 'road' || categoryId == 'trail') {
+        if (cattegories.includes(categoryId)) {
             let q = query(
                 collection(db, 'items'),
                 where("type", "==", categoryId)

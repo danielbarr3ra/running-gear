@@ -1,7 +1,7 @@
 import React from "react";
 import Brand from "./Brand"
 import CartWidget from "./CartWidget";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 import AccountLogIn from "./AccountLogIn";
 import { Link } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/solid"
@@ -33,14 +33,11 @@ const NavBar = () => {
                         Trail
                     </div>
                 </Link>
-                <Link to={"/category/apperal"}>
+                <Link to={"/category/sandal"}>
                     <div className="navTab ">
-                        Apperal
+                        Sandals
                     </div>
                 </Link>
-                <div className="searchBar">
-                    <SearchBar />
-                </div>
                 <div className="accountLogIn">
                     <AccountLogIn />
                 </div>
@@ -78,9 +75,9 @@ const NavBar = () => {
                                 Trail
                             </li>
                         </Link>
-                        <Link to={"/category/apperal"}>
+                        <Link to={"/category/sandal"}>
                             <li className="navTab ">
-                                Apperal
+                                Sandals
                             </li>
                         </Link>
                         <li className="Cart flex">
