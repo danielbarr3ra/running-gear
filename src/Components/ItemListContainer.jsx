@@ -6,11 +6,12 @@ import { collection, getFirestore, getDocs, query, where } from "firebase/firest
 
 
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
     const [loading] = useState()
     const [error] = useState()
     const [catalog, setCatalog] = useState([])
     const { categoryId } = useParams();
+    let message
     const cattegories = ['road', 'trail', 'sandal', 'new']
     useEffect(() => {
         const db = getFirestore();
@@ -39,11 +40,14 @@ const ItemListContainer = ({ greeting }) => {
         }
     }, [categoryId])
 
-
-
+    if (cattegories.includes(categoryId)) {
+        message = `catalog for ${categoryId}`
+    } else {
+        message = `Welcom to run on!`
+    }
     return (
         <>
-            <h1 className="text-4xl mt-0 mb-2 text gray-900">{greeting} catalog for {categoryId}</h1>
+            <h1 className="content-center text-4xl text gray-900">{message}</h1>
             <div> {loading && "loading catalog"} </div>
             <div> {error && "an error in loading catalog"} </div>
             <ItemList catalog={catalog} />
