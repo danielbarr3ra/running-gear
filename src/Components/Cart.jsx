@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import Modal from 'react-modal'
 import { CartContext } from "./CartContext";
 import CartListItem from "./CartListItem";
 import { Link } from "react-router-dom";
@@ -6,6 +7,12 @@ import { collection, getFirestore, addDoc } from "firebase/firestore"
 import SubmitForm from "./SubmitForm";
 
 const Cart = () => {
+    // for the modal pop up of the form
+    const [formIsOpen, setFormOpen] = useState(false)
+    const openForm = () => { setFormOpen(true) }
+    const closeForm = () => { setFormOpen(false) }
+
+
     const { cart, cartSize, cartPrice } = useContext(CartContext)
     const submitOrder = () => {
         const order = {
@@ -41,7 +48,11 @@ const Cart = () => {
     }
     return (
         <>
-            <SubmitForm />
+            <Modal isOpen={formIsOpen} className="flex-row object-contain">
+                <SubmitForm onSubmit={() => {
+                    closeForm()
+                }} />
+            </Modal>
             <div className="container mx-auto mt-10">
                 <div className="flex flex-col md:flex-row shadow-md my-10">
                     <div className="w-full md:w-8/12 bg-white px-10 py-10">
@@ -95,6 +106,7 @@ const Cart = () => {
                             </div>
                             <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full" onClick={() => {
                                 submitOrder()
+                                openForm()
                             }}>Checkout</button>
                         </div>
                     </div>
