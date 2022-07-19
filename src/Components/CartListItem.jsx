@@ -11,10 +11,10 @@ const CartListItem = ({ location }) => {
     let shoe = cart[location]
     let { id, model, quantity, price, imageUrl } = cart[location]
 
-    const getStock = () => {
+    const getStock = async () => {
         const db = getFirestore();
         const docItem = doc(db, 'items', id);
-        getDoc(docItem).then(
+        await getDoc(docItem).then(
             (res) => {
                 setCurrentStok(
                     res.data().stock
