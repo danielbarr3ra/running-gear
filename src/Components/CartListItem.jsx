@@ -1,12 +1,29 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types'
 import { CartContext } from "./CartContext";
+import { doc, getDoc, getFirestore, updateDoc } from "firebase/firestore"
 
 const CartListItem = ({ location }) => {
+    const [currentStock, setCurrentStok] = useState(0)
+    const [begginerStock, setBegginerStock] = useState(0)
     const { cart, addItem, deleteItem } = useContext(CartContext)
     let shoe = cart[location]
     let { id, model, quantity, price, imageUrl } = cart[location]
+
+    const getStock = () => {
+        const db = getFirestore();
+        const docItem = doc(db, 'items', id);
+        getDoc(docItem).then(
+            (res) => {
+                setCurrentStok(
+                    res.data().stock
+                )
+            })
+    }
+    useEffect(() => {
+        getStock()
+    }, [currentStock])
 
     return (
         <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
@@ -33,9 +50,10 @@ const CartListItem = ({ location }) => {
                 <input className="mx-2 border text-center w-12" type="text" value={quantity} />
 
                 <svg className="fill-current text-gray-600 w-3" viewBox="0 0 448 512" onClick={() => {
-                    addItem({ ...shoe }, +1);
-                    if (shoe.quantity == 0) {
-                        deleteItem(id);
+                    if (shoe.quantity >= currentStock) {
+                        alert('not enought Stock');
+                    } else {
+                        addItem({ ...shoe }, +1);
                     }
                 }}>
                     <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />

@@ -1,9 +1,11 @@
-import React, { useState, useContext } from "react";
+/* eslint-disable no-unused-vars */
+import React, { useState, useContext, useEffect } from "react";
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 import ItemCount from './ItemCount'
 import { CartContext } from "./CartContext";
 import { BadgeCheckIcon } from "@heroicons/react/solid"
+import { doc, updateDoc, getFirestore, connectFirestoreEmulator } from "firebase/firestore"
 
 const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) => {
     const [count, setCount] = useState(0)
@@ -17,6 +19,12 @@ const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) =
             price,
             imageUrl,
         }, amount)
+    }
+    const updateStock = async (id) => {
+        let current = stock - count
+        var db = getFirestore();
+        const shoe = doc(db, 'items', id);
+        await updateDoc(shoe, { stock: current })
     }
     return (
         <>
@@ -43,6 +51,11 @@ const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) =
                         <BadgeCheckIcon className="h-5 w-5" />
                         <span className="text-base font-normal leading-tight text-gray-800 dark:text-gray-800"> surface type: {type}</span>
                     </li>
+                    <li className="flex space-x-3">
+                        {/* <!-- Icon --> */}
+                        <BadgeCheckIcon className="h-5 w-5" />
+                        <span className="text-base font-normal leading-tight text-gray-800 dark:text-gray-800"> Inventory Available: {stock - count}</span>
+                    </li>
                     <li className="flex space-x-3 line-through decoration-gray-500">
                         {/* <!-- Icon --> */}
                         <BadgeCheckIcon className="h-5 w-5" />
@@ -52,7 +65,9 @@ const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) =
                 {
                     count > 0 ?
                         <Link to='/cart'>
-                            <button type="button" className="text-white bg-gray-700 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-red-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Go to checkout</button>
+                            <button type="button" className="text-white bg-gray-700 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-red-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center" onClick={
+                                updateStock(id)
+                            }>Go to checkout</button>
                         </Link> :
                         <ItemCount stock={stock} initial={0} addOn={addOn} />
                 }
@@ -67,7 +82,7 @@ ItemDetail.propTypes = {
     stock: PropTypes.number,
     model: PropTypes.string,
     imageUrl: PropTypes.string,
-    id: PropTypes.number,
+    id: PropTypes.string,
     stack: PropTypes.string,
     upper: PropTypes.string,
     type: PropTypes.string
