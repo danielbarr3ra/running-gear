@@ -31,7 +31,7 @@ const SubmitForm = ({ onSubmit }) => {
     }
     return (
         <div className="flex justify-around bg-blue-200">
-            <form name="submitOrder" className="max-w-lg m-4 p-4 bg-white rounded shadow-xl">
+            <form name="submitOrder" className="sm:w-10/12 md:w-1/2 m-4 p-4 bg-white rounded shadow-xl">
                 <div className="mt-2">
                     <label className="block text-sm text-gray-600" htmlFor="cus_name">Name</label>
                     <input className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_name" name="cus_name" type="text" required="" placeholder="Your Name" aria-label="Name" />
