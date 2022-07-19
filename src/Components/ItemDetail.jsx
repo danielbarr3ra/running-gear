@@ -7,7 +7,7 @@ import { CartContext } from "./CartContext";
 import { BadgeCheckIcon } from "@heroicons/react/solid"
 import { doc, updateDoc, getFirestore, connectFirestoreEmulator } from "firebase/firestore"
 
-const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) => {
+const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl, description }) => {
     const [count, setCount] = useState(0)
     const { addItem } = useContext(CartContext)
     const addOn = (amount) => {
@@ -36,28 +36,26 @@ const ItemDetail = ({ id, model, stack, upper, type, stock, price, imageUrl }) =
                 </div>
                 {/* <!-- List --> */}
                 <ul role="list" className="my-7 space-y-5">
+                    <li className="flex space-x-3  decoration-gray-500">
+                        <span className="text-base font-normal leading-tight text-gray-800">{description}</span>
+                    </li>
                     <li className="flex space-x-3">
-                        {/* <!-- Icon --> */}
                         <BadgeCheckIcon className="h-5 w-5" />
                         <span className="text-base font-normal leading-tight text-gray-800 dark:text-gray-800">Stack: {stack}</span>
                     </li>
                     <li className="flex space-x-3">
-                        {/* <!-- Icon --> */}
                         <BadgeCheckIcon className="h-5 w-5" />
                         <span className="text-base font-normal leading-tight text-gray-800 dark:text-gray-800">Upper: {upper}</span>
                     </li>
                     <li className="flex space-x-3">
-                        {/* <!-- Icon --> */}
                         <BadgeCheckIcon className="h-5 w-5" />
                         <span className="text-base font-normal leading-tight text-gray-800 dark:text-gray-800"> surface type: {type}</span>
                     </li>
                     <li className="flex space-x-3">
-                        {/* <!-- Icon --> */}
                         <BadgeCheckIcon className="h-5 w-5" />
                         <span className="text-base font-normal leading-tight text-gray-800 dark:text-gray-800"> Inventory Available: {stock - count}</span>
                     </li>
                     <li className="flex space-x-3 line-through decoration-gray-500">
-                        {/* <!-- Icon --> */}
                         <BadgeCheckIcon className="h-5 w-5" />
                         <span className="text-base font-normal leading-tight text-gray-800">Gorex Waterproof</span>
                     </li>
@@ -85,7 +83,8 @@ ItemDetail.propTypes = {
     id: PropTypes.string,
     stack: PropTypes.string,
     upper: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    description: PropTypes.string
 }
 
 
