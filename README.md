@@ -54,6 +54,24 @@ const validateEmail = () => {
     }
 ```
 
+The cart was also sotred in localstorage to make sure no information was lost whenever the session ended and avoid to have more api calls to firestore
+```
+    const [initiallyFetched, setInitiallyFetched] = useState()
+
+    useEffect(() => {
+        let previousSession = JSON.parse(localStorage.getItem('cart')) || [];
+        setCart(previousSession)
+        setInitiallyFetched(true)
+    }, [])
+    useEffect(() => {
+        setCartSize(sizeCart)
+        setCartPrice(getItemPrice)
+        if (initiallyFetched) {
+            localStorage.setItem("cart", JSON.stringify(cart))
+        }
+    }, [cart])
+```
+
 Finally npm was utilized for packaing managment, eslint for clearer code and proptypes to validate react-components' props.
 
 
