@@ -1,6 +1,6 @@
-#Running-gear
+# Running-gear
 
-Running gear is a simple reac project completed for coderhouse.
+Running gear is a simple react project completed for coderhouse.
 In this project react was utilized to create a template for ecomerce website.
 Firestore and Vercel were implemented for database storage and deployment respectively. 
 
