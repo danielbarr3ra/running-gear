@@ -14,12 +14,13 @@ const Cart = () => {
 
 
     const { cart, cartSize, cartPrice } = useContext(CartContext)
-    const submitOrder = () => {
+    const submitOrder = (name, email, address, payments) => {
         const order = {
             buyer: {
-                email: 'email1@gmail.com',
-                name: 'test1',
-                phone: '000000000'
+                email: email,
+                name: name,
+                phone: address,
+                payment: payments
             },
             items: {
                 ...cart
@@ -49,9 +50,7 @@ const Cart = () => {
     return (
         <>
             <Modal isOpen={formIsOpen} className="flex-row object-contain">
-                <SubmitForm onSubmit={() => {
-                    closeForm()
-                }} />
+                <SubmitForm onSubmit={submitOrder} closeForm={closeForm} />
             </Modal>
             <div className="container mx-auto mt-10">
                 <div className="flex flex-col md:flex-row shadow-md my-10">
@@ -105,7 +104,6 @@ const Cart = () => {
                                 <span>{cartPrice - 10}</span>
                             </div>
                             <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full" onClick={() => {
-                                submitOrder()
                                 openForm()
                             }}>Checkout</button>
                         </div>

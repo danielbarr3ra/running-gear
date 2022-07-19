@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import PropTypes from 'prop-types'
 
-const SubmitForm = ({ onSubmit }) => {
+const SubmitForm = ({ onSubmit, closeForm }) => {
     const validateNames = () => {
         let name = document.submitOrder.cus_name.value
         if (name == "") {
@@ -20,7 +21,7 @@ const SubmitForm = ({ onSubmit }) => {
     }
     const validatePayment = () => {
         let pay = document.submitOrder.cus_pay.value
-        if (pay == "" || pay.length !== 12) {
+        if (pay == "" || pay.length < 12) {
             alert("please provide a valid payman card number")
             return false
         }
@@ -52,7 +53,12 @@ const SubmitForm = ({ onSubmit }) => {
                 <div className="mt-4">
                     <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" onClick={() => {
                         if (validateForm()) {
-                            onSubmit()
+                            let name = document.submitOrder.cus_name.value
+                            let email = document.submitOrder.cus_email.value
+                            let address = document.submitOrder.cus_address.value
+                            let pay = document.submitOrder.cus_pay.value
+                            onSubmit(name, email, address, pay)
+                            closeForm()
                         }
                     }} type="submit">Pay</button>
                 </div>
@@ -63,5 +69,6 @@ const SubmitForm = ({ onSubmit }) => {
 
 SubmitForm.propTypes = {
     onSubmit: PropTypes.func,
+    closeForm: PropTypes.func
 }
 export default SubmitForm
